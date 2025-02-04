@@ -46,7 +46,7 @@ Now, we should have this table loaded into R:
 
 For this stage of the work, I created three new variables.
 
-1.   BSD (body size dimorphism): refers to the ratio of the average male to female body mass.
+1.  BSD (body size dimorphism): refers to the ratio of the average male to female body mass.
 
 ```{r}
 d$BSD <- d$Body_mass_male_mean/d$Body_mass_female_mean
