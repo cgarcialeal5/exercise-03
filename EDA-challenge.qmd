@@ -2,7 +2,13 @@
 title: "EDA-challenge"
 format: html
 editor: visual
+warning: false
 ---
+
+```{r}
+#| echo: false
+knitr::opts_chunk$set(fig.width = 8.32, fig.height = 6)
+```
 
 # Introduction
 
@@ -12,20 +18,14 @@ This is the documentation for the script used for the EDA challenge. The challen
 
 Before starting the work, first we must load the packages necessary for the analysis. For this particular work, we will load:
 
-```{r eval= FALSE}
+```{r setup, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
-library(tidyverse)  ## for data wrangling and visualization
-library(ggplot2)  ## for visualizations
-library(skimr)  ## for summary functions
-library(summarytools)  ## for summary functions
-library(dataMaid) ## to identify potential errors
-library(pastecs)  ## for analyzing space-time ecological series
-library(Hmisc)  ## Harrell Miscellaneous
-library(ggExtra)  ## for 'ggplot2' enhancements
-library(GGally)   ## extension to 'ggplot2'
-library(corrplot) ## for visualizations
-library(patchwork)  ## to create plots
-library(cowplot)  ## extension to 'ggplot2'
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(ggplot2)
+library(ggExtra)
 ```
 
 Once the packages have been loaded, we must also load the data into R in a way that the program can read and interact with it. To this end, first I command R to load the data and then to read it as variable 'd.'
@@ -39,6 +39,11 @@ Now, we should have this table loaded into R:
 
 ```{r}
 #| echo: false
+d |>
+  head(10) |>
+  kable() |>
+  kable_styling() |>
+  kableExtra::scroll_box(width = "100%", height = "300px")
 
 ```
 
@@ -70,5 +75,121 @@ d$diameter<- NULL
 Once those three variables have been added, the new table should look like this:
 
 ```{r}
+#| echo: false
+d |>
+  head(10) |>
+  kable() |>
+  kable_styling() |>
+  kableExtra::scroll_box(width = "100%", height = "300px")
+```
+
+# Data Visualizations
+
+## Relationship between day range length and time spent moving
+
+Overall relationship:
+
+```{r}
+p <- ggplot(data = d, aes(x = Move, y = DayLength_km)) + 
+scale_x_continuous(limits = c(0, 40), breaks = seq(0, 40, by = 5)) +
+scale_y_continuous(limits = c(0, 11), breaks = seq(0, 11, by = 1)) + 
+xlab("Time Spent Moving (min)") + 
+ylab("Day Range Length (km)") + 
+geom_point(na.rm = TRUE) + 
+theme(legend.position = "bottom", legend.title = element_blank()) +
+geom_smooth(method = "lm", fullrange = TRUE, na.rm = TRUE) +
+theme(plot.margin = margin(1, 1, 1, 1, "cm"))
+p
+```
+
+Relationship by family:
+
+```{r}
+p <- ggplot(data = d, aes(x = (Move), y = (DayLength_km))) + 
+  xlab("Time Spent Moving (min)") + 
+  ylab("Day Range Length (km)") + 
+  geom_point(na.rm = TRUE) + 
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  facet_wrap(~Family, ncol = 4, nrow = 4, scales = "free") + 
+  theme(legend.position = "none", panel.spacing.x = unit(0.75, "cm"), panel.spacing.y = unit(0.2, "cm")) + 
+  geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
+p
 
 ```
+
+### Questions
+
+Generally, there is a slight trend of species traveling farther when they spend more time moving. However, as seen by the regression line, the upward slope is so slim, it is almost negligible. Therefore, while the graph does indicate a positive correlation between time moving and distance traveled, overall it is a weak correlation. Furthermore, the weak correlation is also apparent when looking at the individual graphs for each family. However, there seems to be some variability within the same families. For example, the Cercopithecidae consistently spend around 10 to 40 minutes moving and their day range spans about 0 to 2.5 km, however there are a few outliers that move around the same amount of time each day but travel up to 5 km daily. That is twice as much as most of the population within the family. Although less clear on the graph above, there is also variability in the Hominidae family. All of the sample ranges from 10 to 20 minutes of movement daily, but the distance travel shows no clear pattern.
+
+In terms of transforming either of the variables, I would use the log() function on the day range length because the
+
+## Relationship between day range length and group size
+
+Overall relationship:
+
+```{r}
+p <- ggplot(data = d, aes(x = (MeanGroupSize), y = (DayLength_km))) +
+  scale_x_continuous(limits = c(0, 40), breaks = seq(0, 40, by = 5)) +
+scale_y_continuous(limits = c(0, 6), breaks = seq(0, 6, by = 0.5)) +
+  xlab("Average Group Size") + 
+  ylab("Day Range Length (km)") + 
+  geom_point(na.rm = TRUE) + 
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
+p
+```
+
+Relationship by family:
+
+```{r}
+p <- ggplot(data = d, aes(x = (MeanGroupSize), y = (DayLength_km))) +
+  xlim(min(0, na.rm = TRUE), max(40, na.rm = TRUE)) + 
+  ylim(min(0, na.rm = TRUE), max(6, na.rm = TRUE)) + 
+  xlab("Average Group Size") + 
+  ylab("Day Range Length (km)") + 
+  geom_point(na.rm = TRUE) + 
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  facet_wrap(~Family, ncol = 4, nrow = 4, scale = "free") + 
+  theme(legend.position = "none", panel.spacing.x = unit(0.75, "cm"), panel.spacing.y = unit(0.2, "cm")) + 
+  geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
+p
+```
+
+### Questions
+
+Similarly to the comparison of day range and time spent moving, in this case there is also a weak positive correlation between average group size and day range. However, in the graph showing the overall relationship between the two variables I found it interesting that smaller groups tend to have similar day ranges, while the is more variability among the larger groups. Despite not necessarily having long day ranges, larger groups, regardless of family, tend to either move significantly less or about the same amount than smaller groups. Regardless, I did find interesting the outlier within the larger groups that moves over twice the amount as any other group. By studying the individual graphs, I can tell that the outlier belongs to the Cercopithecidae family. Furthermore, while they have the greater variability in group size, the day range length for the groups within this family range from 0 to 4 km, which is in line with the movement in other families of various group sizes.
+
+## Relationship between canine size dimorphism and body size dimorphism
+
+Overall relationship:
+
+```{r}
+p <- ggplot(data = d, aes(x = (BSD), y = (Canine_Dimorphism))) +
+  xlab("Body Size Dimorphism") + 
+  ylab("Canine Size Dimorphism") + 
+  geom_point(na.rm = TRUE) + 
+  scale_y_continuous(breaks = seq(1, 6, by = 0.5)) +
+  scale_x_continuous(breaks = seq(1, 3, by = 0.5)) +
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
+p
+```
+
+Relationship by family:
+
+```{r}
+p <- ggplot(data = d, aes(x = (BSD), y = (Canine_Dimorphism))) + 
+  xlab("Body Size Dimorphism)") + 
+  ylab("Canine Dimorphism") + 
+  geom_point(na.rm = TRUE) + 
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  facet_wrap(~Family, ncol = 4, nrow = 4, scales = "free") + 
+  theme(legend.position = "none",  panel.spacing = unit(0.5, "cm")) +
+  geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
+
+p
+```
+
+### Questions
+
+Generally speaking, there is a definite positive correlation between general body size dimorphism and specific canine dimorphism.
