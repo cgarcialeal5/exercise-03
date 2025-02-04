@@ -1,0 +1,74 @@
+---
+title: "EDA-challenge"
+format: html
+editor: visual
+---
+
+# Introduction
+
+This is the documentation for the script used for the EDA challenge. The challenge will use various short pieces of code to create new variables for an existing data set and create plots to visualize the data. The data for this work contains a subset of the data set in Kamilar and Cooper. The data relates to primate ecology, behavior, and life history and was obtained from the "ada-datasets" Github repository by Anthony Di Fiore.
+
+# Preliminary Work
+
+Before starting the work, first we must load the packages necessary for the analysis. For this particular work, we will load:
+
+```{r eval= FALSE}
+
+library(tidyverse)  ## for data wrangling and visualization
+library(ggplot2)  ## for visualizations
+library(skimr)  ## for summary functions
+library(summarytools)  ## for summary functions
+library(dataMaid) ## to identify potential errors
+library(pastecs)  ## for analyzing space-time ecological series
+library(Hmisc)  ## Harrell Miscellaneous
+library(ggExtra)  ## for 'ggplot2' enhancements
+library(GGally)   ## extension to 'ggplot2'
+library(corrplot) ## for visualizations
+library(patchwork)  ## to create plots
+library(cowplot)  ## extension to 'ggplot2'
+```
+
+Once the packages have been loaded, we must also load the data into R in a way that the program can read and interact with it. To this end, first I command R to load the data and then to read it as variable 'd.'
+
+```{r}
+f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"
+d <- read.csv(f)
+```
+
+Now, we should have this table loaded into R:
+
+```{r}
+#| echo: false
+
+```
+
+# Adding New Variables
+
+For this stage of the work, I created three new variables.
+
+1.   BSD (body size dimorphism): refers to the ratio of the average male to female body mass.
+
+```{r}
+d$BSD <- d$Body_mass_male_mean/d$Body_mass_female_mean
+```
+
+2.  sex_ratio: refers to the ratio of the number of adult females to adult males in a typical group.
+
+```{r}
+d$sex_ratio <- d$AdultFemale/d$AdultMales
+```
+
+3.  DI (defensibility index): refers to the ratio of day range length to the diameter of the home range.
+
+```{r}
+a<- d$HomeRange_km2
+d$diameter <- 2*sqrt(a/pi)
+d$DI<- d$DayLength_km/d$diameter
+d$diameter<- NULL
+```
+
+Once those three variables have been added, the new table should look like this:
+
+```{r}
+
+```
