@@ -1,5 +1,6 @@
 ---
 title: "EDA-challenge"
+author: Cristina Garcia Leal
 format: html
 editor: visual
 warning: false
@@ -31,8 +32,9 @@ library(ggExtra)
 Once the packages have been loaded, we must also load the data into R in a way that the program can read and interact with it. To this end, first I command R to load the data and then to read it as variable 'd.'
 
 ```{r}
+
 f <- "https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"
-d <- read.csv(f)
+d <- read_csv(f, col_names = TRUE)
 ```
 
 Now, we should have this table loaded into R:
@@ -121,7 +123,9 @@ p
 
 Generally, there is a slight trend of species traveling farther when they spend more time moving. However, as seen by the regression line, the upward slope is so slim, it is almost negligible. Therefore, while the graph does indicate a positive correlation between time moving and distance traveled, overall it is a weak correlation. Furthermore, the weak correlation is also apparent when looking at the individual graphs for each family. However, there seems to be some variability within the same families. For example, the Cercopithecidae consistently spend around 10 to 40 minutes moving and their day range spans about 0 to 2.5 km, however there are a few outliers that move around the same amount of time each day but travel up to 5 km daily. That is twice as much as most of the population within the family. Although less clear on the graph above, there is also variability in the Hominidae family. All of the sample ranges from 10 to 20 minutes of movement daily, but the distance travel shows no clear pattern.
 
-In terms of transforming either of the variables, I would use the log() function on the day range length because the
+In terms of transforming either of the variables, I would transform the day length range variable because the values range from 0.25 to 11, even though 11 is an obvious outlier, as the next highest values are 5 and 6. To transform the data related to this variable I would probably scale it by normalization so all values are on a scale from 0 to 1 or use the log() function to both compress the outlier and spread the smaller values.
+
+Although I did not transform the data for this exercise, I did change the visualizations of the plots in order to make them more readable. Considering the questions that were asked, on the facet_wrapped plot, I thought it was better to understand the individual patterns for each taxa, rather than compare for common results. In other words, I focused on comparing trends rather than values. For example, I was not focused on whether Cebidae and Hominidae spent a similar amount of time moving or traveled similar distances. Instead, I was more interested in the fact that both taxa showed no correlation between the two variables (i.e. the line of regression was horizontal and parallel to the x-axis, indicating a slope of zero or near zero). To visualize this better, I set the scales on the facet_wrap code to "free" so that the scales would be more in line with the data in each facet. I also edited the spacing between the panels to make it more readable and easier to understand.
 
 ## Relationship between day range length and group size
 
@@ -129,8 +133,8 @@ Overall relationship:
 
 ```{r}
 p <- ggplot(data = d, aes(x = (MeanGroupSize), y = (DayLength_km))) +
-  scale_x_continuous(limits = c(0, 40), breaks = seq(0, 40, by = 5)) +
-scale_y_continuous(limits = c(0, 6), breaks = seq(0, 6, by = 0.5)) +
+  scale_x_continuous(limits = c(0, 90), breaks = seq(0, 90, by = 10)) +
+scale_y_continuous(limits = c(0, 11), breaks = seq(0, 11, by = 1)) +
   xlab("Average Group Size") + 
   ylab("Day Range Length (km)") + 
   geom_point(na.rm = TRUE) + 
@@ -143,13 +147,11 @@ Relationship by family:
 
 ```{r}
 p <- ggplot(data = d, aes(x = (MeanGroupSize), y = (DayLength_km))) +
-  xlim(min(0, na.rm = TRUE), max(40, na.rm = TRUE)) + 
-  ylim(min(0, na.rm = TRUE), max(6, na.rm = TRUE)) + 
   xlab("Average Group Size") + 
   ylab("Day Range Length (km)") + 
   geom_point(na.rm = TRUE) + 
   theme(legend.position = "bottom", legend.title = element_blank()) +
-  facet_wrap(~Family, ncol = 4, nrow = 4, scale = "free") + 
+  facet_wrap(~Family, ncol = 4, nrow = 4, scales = "free") + 
   theme(legend.position = "none", panel.spacing.x = unit(0.75, "cm"), panel.spacing.y = unit(0.2, "cm")) + 
   geom_smooth(method = "lm", fullrange = FALSE, na.rm = TRUE)
 p
@@ -158,6 +160,8 @@ p
 ### Questions
 
 Similarly to the comparison of day range and time spent moving, in this case there is also a weak positive correlation between average group size and day range. However, in the graph showing the overall relationship between the two variables I found it interesting that smaller groups tend to have similar day ranges, while the is more variability among the larger groups. Despite not necessarily having long day ranges, larger groups, regardless of family, tend to either move significantly less or about the same amount than smaller groups. Regardless, I did find interesting the outlier within the larger groups that moves over twice the amount as any other group. By studying the individual graphs, I can tell that the outlier belongs to the Cercopithecidae family. Furthermore, while they have the greater variability in group size, the day range length for the groups within this family range from 0 to 4 km, which is in line with the movement in other families of various group sizes.
+
+Again, this comparison uses the same y-axis variable as the one above. As such, I have the same opinion about normalizing the values of that data. On the other hand, I would not transform the variable relating to the mean group size, as the values on that are more evenly spread. Like before, in this comparison I also used the scale= "free" on the facet-wrap plot to better observe the differing patterns for each taxa. Despite the different values for each taxa, I was impressed that there is a consistent, albeit weak, positive correlation between the two variables. The only taxa that does not follow this pattern is Hylobatidae. However, the fact that there are only to values for that taxa, I would consider this insufficient data rather than state a negative correlation.
 
 ## Relationship between canine size dimorphism and body size dimorphism
 
@@ -192,4 +196,53 @@ p
 
 ### Questions
 
-Generally speaking, there is a definite positive correlation between general body size dimorphism and specific canine dimorphism.
+Generally speaking, there is a definite positive correlation between general body size dimorphism and specific canine dimorphism. On the other hand, when looking at the individual taxa, there are multiple different patterns. There are three taxa (Cheirogalidae, Lepilemuridae, and Lemuridae) that show a negative correlation between body size dimorphism and canine dimorphism. However, two of those taxa have a very small sample, thus I would consider the data insuficient. Furthermore, there are two taxa (Galagidae and Indriidae) with no correlation between the two variables. Although I would also include Indriidae in the "insufficient data" category, it is interesting that in the Galagidae the lack of correlation is very prominent.
+
+# Diet Strategy
+
+Creating the new variable for diet strategy:
+
+```{r}
+d$diet_strategy <- if_else(d$Fruit >= 50, "frugivore",ifelse(d$Leaves >= 50, "folivore", ifelse(d$Fruit < 50 & d$Leaves < 50, "omnivore", NA)))
+```
+
+Now, we have a new variable in the table:
+
+```{r}
+#| echo: false
+d |>
+  head(10) |>
+  kable() |>
+  kable_styling() |>
+  kableExtra::scroll_box(width = "100%", height = "300px")
+```
+
+## Visualizing Diet Strategy
+
+```{r}
+e <- d |>
+  filter(!is.na(diet_strategy))
+p <- ggplot(data = e, 
+            aes(x = diet_strategy, y = MeanGroupSize))+
+  geom_boxplot(na.rm = TRUE)+
+  theme(axis.text.x = element_text(angle = 90))+
+  ylab("MeanGroupSize")+
+  labs(x="Dietary Strategy", y= "Average Group Size")
+p
+```
+
+## Question
+
+Frugivores have more varied group sizes. Although there are some smaller groups that the folivores, in general they to tend to live in larger groups. However, despite the outliers in the frugivore category, the omnivores are the ones who live in the largest groups.
+
+# {dplyr} Code
+
+```{r}
+s <-mutate(d, Binomial = paste(Genus, Species, sep = " ")) |>
+  select(Binomial, Family, Brain_Size_Species_Mean, Body_mass_male_mean) |>
+  group_by(Family) |>
+  summarise(avgB = mean(Brain_Size_Species_Mean, na.rm = TRUE), avgM = mean(Body_mass_male_mean,na.rm = TRUE)) |>
+  arrange(avgB)
+s
+              
+```

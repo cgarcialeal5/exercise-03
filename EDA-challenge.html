@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Cristina Garcia Leal">
 
 <title>EDA-challenge</title>
 <style>
@@ -90,6 +91,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cristina Garcia Leal </p>
+          </div>
+  </div>
     
   
     
@@ -118,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once the packages have been loaded, we must also load the data into R in a way that the program can read and interact with it. To this end, first I command R to load the data and then to read it as variable ‘d.’</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/difiore/ada-datasets/main/data-wrangling.csv"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(f, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we should have this table loaded into R:</p>
 <div class="cell">
@@ -170,8 +177,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">2.210</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -195,8 +202,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -371,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">45.0</td>
 <td style="text-align: left;">41</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -395,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -487,8 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">2.210</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -515,8 +522,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -712,7 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">45.0</td>
 <td style="text-align: left;">41</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -739,8 +746,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -803,7 +810,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="questions" class="level3">
 <h3 class="anchored" data-anchor-id="questions">Questions</h3>
 <p>Generally, there is a slight trend of species traveling farther when they spend more time moving. However, as seen by the regression line, the upward slope is so slim, it is almost negligible. Therefore, while the graph does indicate a positive correlation between time moving and distance traveled, overall it is a weak correlation. Furthermore, the weak correlation is also apparent when looking at the individual graphs for each family. However, there seems to be some variability within the same families. For example, the Cercopithecidae consistently spend around 10 to 40 minutes moving and their day range spans about 0 to 2.5 km, however there are a few outliers that move around the same amount of time each day but travel up to 5 km daily. That is twice as much as most of the population within the family. Although less clear on the graph above, there is also variability in the Hominidae family. All of the sample ranges from 10 to 20 minutes of movement daily, but the distance travel shows no clear pattern.</p>
-<p>In terms of transforming either of the variables, I would use the log() function on the day range length because the</p>
+<p>In terms of transforming either of the variables, I would transform the day length range variable because the values range from 0.25 to 11, even though 11 is an obvious outlier, as the next highest values are 5 and 6. To transform the data related to this variable I would probably scale it by normalization so all values are on a scale from 0 to 1 or use the log() function to both compress the outlier and spread the smaller values.</p>
+<p>Although I did not transform the data for this exercise, I did change the visualizations of the plots in order to make them more readable. Considering the questions that were asked, on the facet_wrapped plot, I thought it was better to understand the individual patterns for each taxa, rather than compare for common results. In other words, I focused on comparing trends rather than values. For example, I was not focused on whether Cebidae and Hominidae spent a similar amount of time moving or traveled similar distances. Instead, I was more interested in the fact that both taxa showed no correlation between the two variables (i.e.&nbsp;the line of regression was horizontal and parallel to the x-axis, indicating a slope of zero or near zero). To visualize this better, I set the scales on the facet_wrap code to “free” so that the scales would be more in line with the data in each facet. I also edited the spacing between the panels to make it more readable and easier to understand.</p>
 </section>
 </section>
 <section id="relationship-between-day-range-length-and-group-size" class="level2">
@@ -811,8 +819,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Overall relationship:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> (MeanGroupSize), <span class="at">y =</span> (DayLength_km))) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">by =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">11</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">11</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Average Group Size"</span>) <span class="sc">+</span> </span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Day Range Length (km)"</span>) <span class="sc">+</span> </span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
@@ -830,16 +838,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Relationship by family:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> d, <span class="fu">aes</span>(<span class="at">x =</span> (MeanGroupSize), <span class="at">y =</span> (DayLength_km))) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">min</span>(<span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(<span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">min</span>(<span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(<span class="dv">6</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Average Group Size"</span>) <span class="sc">+</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Day Range Length (km)"</span>) <span class="sc">+</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">scale =</span> <span class="st">"free"</span>) <span class="sc">+</span> </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="fl">0.75</span>, <span class="st">"cm"</span>), <span class="at">panel.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span> </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fullrange =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Average Group Size"</span>) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Day Range Length (km)"</span>) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Family, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="fl">0.75</span>, <span class="st">"cm"</span>), <span class="at">panel.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">fullrange =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -851,6 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="questions-1" class="level3">
 <h3 class="anchored" data-anchor-id="questions-1">Questions</h3>
 <p>Similarly to the comparison of day range and time spent moving, in this case there is also a weak positive correlation between average group size and day range. However, in the graph showing the overall relationship between the two variables I found it interesting that smaller groups tend to have similar day ranges, while the is more variability among the larger groups. Despite not necessarily having long day ranges, larger groups, regardless of family, tend to either move significantly less or about the same amount than smaller groups. Regardless, I did find interesting the outlier within the larger groups that moves over twice the amount as any other group. By studying the individual graphs, I can tell that the outlier belongs to the Cercopithecidae family. Furthermore, while they have the greater variability in group size, the day range length for the groups within this family range from 0 to 4 km, which is in line with the movement in other families of various group sizes.</p>
+<p>Again, this comparison uses the same y-axis variable as the one above. As such, I have the same opinion about normalizing the values of that data. On the other hand, I would not transform the variable relating to the mean group size, as the values on that are more evenly spread. Like before, in this comparison I also used the scale= “free” on the facet-wrap plot to better observe the differing patterns for each taxa. Despite the different values for each taxa, I was impressed that there is a consistent, albeit weak, positive correlation between the two variables. The only taxa that does not follow this pattern is Hylobatidae. However, the fact that there are only to values for that taxa, I would consider this insufficient data rather than state a negative correlation.</p>
 </section>
 </section>
 <section id="relationship-between-canine-size-dimorphism-and-body-size-dimorphism" class="level2">
@@ -896,9 +903,404 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="questions-2" class="level3">
 <h3 class="anchored" data-anchor-id="questions-2">Questions</h3>
-<p>Generally speaking, there is a definite positive correlation between general body size dimorphism and specific canine dimorphism.</p>
+<p>Generally speaking, there is a definite positive correlation between general body size dimorphism and specific canine dimorphism. On the other hand, when looking at the individual taxa, there are multiple different patterns. There are three taxa (Cheirogalidae, Lepilemuridae, and Lemuridae) that show a negative correlation between body size dimorphism and canine dimorphism. However, two of those taxa have a very small sample, thus I would consider the data insuficient. Furthermore, there are two taxa (Galagidae and Indriidae) with no correlation between the two variables. Although I would also include Indriidae in the “insufficient data” category, it is interesting that in the Galagidae the lack of correlation is very prominent.</p>
 </section>
 </section>
+</section>
+<section id="diet-strategy" class="level1">
+<h1>Diet Strategy</h1>
+<p>Creating the new variable for diet strategy:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>diet_strategy <span class="ot">&lt;-</span> <span class="fu">if_else</span>(d<span class="sc">$</span>Fruit <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"frugivore"</span>,<span class="fu">ifelse</span>(d<span class="sc">$</span>Leaves <span class="sc">&gt;=</span> <span class="dv">50</span>, <span class="st">"folivore"</span>, <span class="fu">ifelse</span>(d<span class="sc">$</span>Fruit <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> d<span class="sc">$</span>Leaves <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"omnivore"</span>, <span class="cn">NA</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we have a new variable in the table:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Scientific_Name</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Family</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Genus</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Species</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Brain_Size_Species_Mean</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Body_mass_male_mean</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Body_mass_female_mean</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">MeanGroupSize</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">AdultMales</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">AdultFemale</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">GR_MidRangeLat_dd</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Precip_Mean_mm</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Temp_Mean_degC</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">HomeRange_km2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">DayLength_km</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Fruit</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Leaves</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Fauna</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Canine_Dimorphism</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Feed</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Move</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Rest</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Social</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">BSD</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">sex_ratio</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">DI</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">diet_strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Allenopithecus_nigroviridis</td>
+<td style="text-align: left;">Cercopithecidae</td>
+<td style="text-align: left;">Allenopithecus</td>
+<td style="text-align: left;">nigroviridis</td>
+<td style="text-align: right;">58.02</td>
+<td style="text-align: right;">6130</td>
+<td style="text-align: right;">3180</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">-0.17</td>
+<td style="text-align: right;">1574.0</td>
+<td style="text-align: right;">25.2</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">2.210</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1.9276730</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Allocebus_trichotis</td>
+<td style="text-align: left;">Cercopithecidae</td>
+<td style="text-align: left;">Allocebus</td>
+<td style="text-align: left;">trichotis</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">-16.59</td>
+<td style="text-align: right;">1902.3</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1.0952381</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alouatta_belzebul</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">belzebul</td>
+<td style="text-align: right;">52.84</td>
+<td style="text-align: right;">7270</td>
+<td style="text-align: right;">5520</td>
+<td style="text-align: right;">7.00</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">-6.80</td>
+<td style="text-align: right;">1643.5</td>
+<td style="text-align: right;">24.9</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">57.3</td>
+<td style="text-align: left;">19.1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.811</td>
+<td style="text-align: right;">13.75</td>
+<td style="text-align: right;">18.75</td>
+<td style="text-align: right;">57.30</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">1.3170290</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">frugivore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alouatta_caraya</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">caraya</td>
+<td style="text-align: right;">52.63</td>
+<td style="text-align: right;">6525</td>
+<td style="text-align: right;">4240</td>
+<td style="text-align: right;">8.00</td>
+<td style="text-align: right;">2.300</td>
+<td style="text-align: right;">3.300</td>
+<td style="text-align: right;">-20.34</td>
+<td style="text-align: right;">1166.4</td>
+<td style="text-align: right;">22.9</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">23.8</td>
+<td style="text-align: left;">67.7</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.542</td>
+<td style="text-align: right;">15.90</td>
+<td style="text-align: right;">17.60</td>
+<td style="text-align: right;">61.60</td>
+<td style="text-align: right;">4.90</td>
+<td style="text-align: right;">1.5389151</td>
+<td style="text-align: right;">1.434783</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">folivore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alouatta_guariba</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">guariba</td>
+<td style="text-align: right;">51.70</td>
+<td style="text-align: right;">5800</td>
+<td style="text-align: right;">4550</td>
+<td style="text-align: right;">6.53</td>
+<td style="text-align: right;">1.370</td>
+<td style="text-align: right;">2.200</td>
+<td style="text-align: right;">-21.13</td>
+<td style="text-align: right;">1332.3</td>
+<td style="text-align: right;">19.6</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5.2</td>
+<td style="text-align: left;">73</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.783</td>
+<td style="text-align: right;">18.33</td>
+<td style="text-align: right;">14.33</td>
+<td style="text-align: right;">64.37</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">1.2747253</td>
+<td style="text-align: right;">1.605839</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">folivore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alouatta_palliata</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">palliata</td>
+<td style="text-align: right;">49.88</td>
+<td style="text-align: right;">7150</td>
+<td style="text-align: right;">5350</td>
+<td style="text-align: right;">12.00</td>
+<td style="text-align: right;">2.900</td>
+<td style="text-align: right;">6.300</td>
+<td style="text-align: right;">6.95</td>
+<td style="text-align: right;">1852.6</td>
+<td style="text-align: right;">23.7</td>
+<td style="text-align: right;">0.190</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">33.1</td>
+<td style="text-align: left;">56.4</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.703</td>
+<td style="text-align: right;">17.94</td>
+<td style="text-align: right;">12.32</td>
+<td style="text-align: right;">66.14</td>
+<td style="text-align: right;">3.64</td>
+<td style="text-align: right;">1.3364486</td>
+<td style="text-align: right;">2.172414</td>
+<td style="text-align: right;">0.6506061</td>
+<td style="text-align: left;">folivore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alouatta_pigra</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">pigra</td>
+<td style="text-align: right;">51.13</td>
+<td style="text-align: right;">11400</td>
+<td style="text-align: right;">6430</td>
+<td style="text-align: right;">6.60</td>
+<td style="text-align: right;">1.925</td>
+<td style="text-align: right;">2.175</td>
+<td style="text-align: right;">18.80</td>
+<td style="text-align: right;">1341.3</td>
+<td style="text-align: right;">25.1</td>
+<td style="text-align: right;">0.300</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">40.8</td>
+<td style="text-align: left;">45.1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.109</td>
+<td style="text-align: right;">24.40</td>
+<td style="text-align: right;">9.80</td>
+<td style="text-align: right;">61.90</td>
+<td style="text-align: right;">3.80</td>
+<td style="text-align: right;">1.7729393</td>
+<td style="text-align: right;">1.129870</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">omnivore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alouatta_seniculus</td>
+<td style="text-align: left;">Atelidae</td>
+<td style="text-align: left;">Alouatta</td>
+<td style="text-align: left;">seniculus</td>
+<td style="text-align: right;">55.22</td>
+<td style="text-align: right;">6690</td>
+<td style="text-align: right;">5210</td>
+<td style="text-align: right;">7.10</td>
+<td style="text-align: right;">1.700</td>
+<td style="text-align: right;">2.200</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">1823.4</td>
+<td style="text-align: right;">25.1</td>
+<td style="text-align: right;">0.100</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">40.0</td>
+<td style="text-align: left;">48.1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: right;">1.464</td>
+<td style="text-align: right;">12.70</td>
+<td style="text-align: right;">6.20</td>
+<td style="text-align: right;">78.50</td>
+<td style="text-align: right;">2.50</td>
+<td style="text-align: right;">1.2840691</td>
+<td style="text-align: right;">1.294118</td>
+<td style="text-align: right;">1.5413726</td>
+<td style="text-align: left;">omnivore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aotus_azarai</td>
+<td style="text-align: left;">Cebidae</td>
+<td style="text-align: left;">Aotus</td>
+<td style="text-align: left;">azarai</td>
+<td style="text-align: right;">20.67</td>
+<td style="text-align: right;">1180</td>
+<td style="text-align: right;">1230</td>
+<td style="text-align: right;">3.10</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">-17.05</td>
+<td style="text-align: right;">1010.9</td>
+<td style="text-align: right;">24.6</td>
+<td style="text-align: right;">0.095</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">45.0</td>
+<td style="text-align: left;">41</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.9593496</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">omnivore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aotus_brumbacki</td>
+<td style="text-align: left;">Cebidae</td>
+<td style="text-align: left;">Aotus</td>
+<td style="text-align: left;">brumbacki</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1.000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+<section id="visualizing-diet-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-diet-strategy">Visualizing Diet Strategy</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(diet_strategy))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> e, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> diet_strategy, <span class="at">y =</span> MeanGroupSize))<span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))<span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MeanGroupSize"</span>)<span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Dietary Strategy"</span>, <span class="at">y=</span> <span class="st">"Average Group Size"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="EDA-challenge_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="798"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>Frugivores have more varied group sizes. Although there are some smaller groups that the folivores, in general they to tend to live in larger groups. However, despite the outliers in the frugivore category, the omnivores are the ones who live in the largest groups.</p>
+</section>
+</section>
+<section id="dplyr-code" class="level1">
+<h1>{dplyr} Code</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span><span class="fu">mutate</span>(d, <span class="at">Binomial =</span> <span class="fu">paste</span>(Genus, Species, <span class="at">sep =</span> <span class="st">" "</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Binomial, Family, Brain_Size_Species_Mean, Body_mass_male_mean) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Family) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgB =</span> <span class="fu">mean</span>(Brain_Size_Species_Mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">avgM =</span> <span class="fu">mean</span>(Body_mass_male_mean,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(avgB)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 3
+   Family            avgB   avgM
+   &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Tarsiidae         3.26   131 
+ 2 Cheirogalidae     4.04   193.
+ 3 Galagidae         5.96   395.
+ 4 Lepilemuridae     7.27   792 
+ 5 Lorisidae         8.67   512.
+ 6 Lemuridae        23.1   2077.
+ 7 Cebidae          23.9   1012.
+ 8 Indriidae        27.3   3638.
+ 9 Daubentonidae    44.8   2620 
+10 Pitheciidae      56.3   1955.
+11 Atelidae         80.6   7895.
+12 Cercopithecidae  85.4   9543.
+13 Hylobatidae     101.    6926.
+14 Hominidae       410.   98681.</code></pre>
+</div>
+</div>
 </section>
 
 </main>
